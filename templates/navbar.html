@@ -1,8 +1,8 @@
 <nav>
   <strong><a href="/">Home</a></strong>
   {% if user.is_authenticated %}
-  <em>logged in as {{ user.account.handle }}</em>
   <span style="float: right">
+    <strong>{{ user.account.handle }}: </strong>
     <a href="{% url 'django.contrib.auth.views.password_change' %}">Change Password</a>
     <a href="{% url 'django.contrib.auth.views.logout' %}">Logout</a>
   </span>
