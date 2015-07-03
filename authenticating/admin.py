@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User, Group
-from .models import Account
+from .models import Account, Invitation
 
 
 class AccountInline(admin.StackedInline):
@@ -10,8 +10,13 @@ class AccountInline(admin.StackedInline):
     verbose_name_plural = 'Site Account'
 
 
+class InvitationInline(admin.StackedInline):
+    model = Invitation
+    extra = 0
+
+
 class UserAdmin(UserAdmin):
-    inlines = (AccountInline,)
+    inlines = (AccountInline, InvitationInline)
 
 
 admin.site.unregister(User)
