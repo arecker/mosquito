@@ -1,0 +1,9 @@
+# Current version of Django
+Django==1.8.2
+
+# Common reqs
+-r common.txt
+
+# Helpful dev packages
+ipdb==0.8.1
+ipython==3.2.0
