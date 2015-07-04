@@ -1,1 +1,2 @@
 django-flat-theme==0.9.5
+django-annoying==0.8.2

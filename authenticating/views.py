@@ -9,14 +9,15 @@ from .forms import AccountForm
 def complete_invitation(request, pk):
     logout(request)
     invite = get_object_or_404(Invitation, pk=pk)
+    invite.completed = True
     if request.method == 'POST':
         form = AccountForm(
             request.POST,
             instance=invite.user.account
         )
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/')
+            form.save()  # todo: get url the right way
+            return HttpResponseRedirect('/account/invitation/complete/')
     form = AccountForm(instance=invite.user.account)
     return render_to_response(
         'registration/complete_invitation.html',

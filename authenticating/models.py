@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
+from annoying.fields import AutoOneToOneField
 import logging
 import uuid
 
@@ -11,7 +12,7 @@ class Account(models.Model):
     site specific extension of the builtin User model
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user = models.OneToOneField(User)
+    user = AutoOneToOneField(User)
     handle = models.CharField(max_length=100, default='anon')
 
     def __unicode__(self):
