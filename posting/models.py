@@ -5,14 +5,14 @@ from authenticating.models import Account
 import uuid
 
 
-class PostManager(models.Manager):
-    def all_with_comment_counts(self):
-        return super(
-            models.Manager,
-            self
-        ).annotate(
-            comment_count=models.Count('comment_set')
-        )
+# class PostManager(models.Manager):
+#     def all_with_comment_counts(self):
+#         return super(
+#             models.Manager,
+#             self
+#         ).annotate(
+#             comment_count=models.Count('comment_set')
+#         )
 
 
 class Post(models.Model):
