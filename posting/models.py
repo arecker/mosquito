@@ -5,22 +5,11 @@ from authenticating.models import Account
 import uuid
 
 
-# class PostManager(models.Manager):
-#     def all_with_comment_counts(self):
-#         return super(
-#             models.Manager,
-#             self
-#         ).annotate(
-#             comment_count=models.Count('comment_set')
-#         )
-
-
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     timestamp = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(Account)
     title = models.CharField(max_length=200)
-    url = models.URLField(blank=False)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -33,4 +22,17 @@ class Post(models.Model):
         return self.title
 
     class Meta:
+        abstract = True
         ordering = ['-timestamp']
+
+
+class TextPost(Post):
+    text = models.TextField()
+
+
+class LinkPost(Post):
+    url = models.URLField()
+
+
+class ImagePost(Post):
+    file = models.ImageField(upload_to='posting/%Y/%m/%d')
