@@ -10,6 +10,13 @@ class Post(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(Account)
     title = models.CharField(max_length=200)
+    text = models.TextField(blank=True, null=True)
+    url = models.URLField(blank=True, null=True)
+    image_file = models.ImageField(
+        upload_to='posting/%Y/%m/%d',
+        blank=True,
+        null=True
+    )
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -22,17 +29,4 @@ class Post(models.Model):
         return self.title
 
     class Meta:
-        abstract = True
         ordering = ['-timestamp']
-
-
-class TextPost(Post):
-    text = models.TextField()
-
-
-class LinkPost(Post):
-    url = models.URLField()
-
-
-class ImagePost(Post):
-    file = models.ImageField(upload_to='posting/%Y/%m/%d')
