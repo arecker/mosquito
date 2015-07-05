@@ -1,4 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>Front Page</h2>
+<dl>
+{% for post in posts %}
+<dd><a href="{{ post.url }}">{{ post.title }}</a></dd>
+<dd><em>posted by {{ post.user.handle }} on {{ post.timestamp | date }} at {{ post.timestamp | time }}</em></dd>
+<dd><em><a href="{{ post.get_absolute_url }}">{{ post.comment_count }} comments</a></em></dd>
+{% endfor %}
+</dl>
 {% endblock %}

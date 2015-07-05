@@ -7,3 +7,4 @@ Django==1.8.2
 # Helpful dev packages
 ipdb==0.8.1
 ipython==3.2.0
+virtualenv==13.1.0

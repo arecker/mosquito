@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
-from django.shortcuts import render_to_response
-from django.views.generic.detail import DetailView
+from django.shortcuts import render_to_response, get_object_or_404
 from .models import Post
 
 
@@ -11,13 +10,21 @@ def index(request):
         'posting/index.html',
         RequestContext(
             request,
-            {}
+            {
+                'posts': Post.objects.all()
+            }
         )
     )
 
 
-class PostDetailView(DetailView):
-    model = Post
-
-    def get_context_data(self, **kwargs):
-        return super(PostDetailView, self).get_context_data(**kwargs)
+@login_required
+def post_detail(request, pk):
+    return render_to_response(
+        'posting/post_detail.html',
+        RequestContext(
+            request,
+            {
+                'post': get_object_or_404(Post, pk=pk)
+            }
+        )
+    )
