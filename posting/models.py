@@ -25,6 +25,14 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
 
+    def get_link(self):
+        if self.image_file:
+            return self.image_file.url
+        elif self.url:
+            return self.url
+        else:
+            return self.get_absolute_url()
+
     def __unicode__(self):
         return self.title
 
