@@ -3,15 +3,6 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from authenticating.views import complete_invitation
 
-"""
-from django.views.generic import TemplateView
-
-urlpatterns = [
-    url(r'^about/', TemplateView.as_view(template_name="about.html")),
-]
-"""
-
-
 urlpatterns = [
     # Builtin urls
     url(r'^accounts/', include('django.contrib.auth.urls')),
