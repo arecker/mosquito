@@ -2,7 +2,10 @@
 {% block content %}
 <h2>{{ post.title }}</h2>
 {% if post.text %}
-<p>{{ post.text }}</p>
+{% load posting_tags %}
+{% autoescape off %}
+{{ post.text| render_markdown }}
+{% endautoescape %}
 {% elif post.image_file %}
 <img alt="{{ post.title }}" src="{{ post.image_file.url }}"/>
 {% endif %}
