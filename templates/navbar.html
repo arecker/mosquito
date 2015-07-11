@@ -1,11 +1,19 @@
 <nav>
-  <strong><a href="/">Home</a></strong>
+  <strong><a href="/">Home</a>&nbsp&nbsp</strong>
   {% if user.is_authenticated %}
   <span>
-    <strong>Post:</strong>
-    <a href="{% url 'add' 'text' %}">text</a>
-    <a href="{% url 'add' 'link' %}">link</a>
-    <a href="{% url 'add' 'image' %}">image</a>
+    <input
+       type="button"
+       value="post text"
+       onclick="location.href='{% url 'add' 'text' %}';"/>
+    <input
+       type="button"
+       value="post link"
+       onclick="location.href='{% url 'add' 'link' %}';"/>
+    <input
+       type="button"
+       value="post image"
+       onclick="location.href='{% url 'add' 'image' %}';"/>
   </span>
   <span style="float: right">
     <strong>{{ user.account.handle }}: </strong>
