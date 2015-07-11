@@ -1,0 +1,19 @@
+/* greentext */
+blockquote {
+    border:0;
+    margin:0;
+    color:#789922;
+    display:block;
+}
+
+blockquote p:before {
+    color: green;
+    content: ">";
+    float: left;
+    display: block;
+}
+
+blockquote * {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
