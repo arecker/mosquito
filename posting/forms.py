@@ -6,7 +6,7 @@ class BasePostForm(forms.ModelForm):
     def save(self, request, *args, **kwargs):
         instance = super(
             BasePostForm, self).save(commit=False)
-        instance.user = request.user
+        instance.user = request.user.account
         instance.save()
         return instance
 

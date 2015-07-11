@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from .models import Post
 from .forms import TextPostForm, LinkPostForm, ImagePostForm
 
@@ -44,7 +44,10 @@ def add(request, slug):
         raise Http404
 
     if request.method == 'POST':
-        form = form_class(request.POST)
+        form = form_class(request.POST, request.FILES)
+        if form.is_valid():
+            form.save(request)
+            return HttpResponseRedirect('/')
     else:
         form = form_class()
 
