@@ -19,6 +19,7 @@ INSTALLED_APPS = (
 
     # Third party
     'annoying',
+    'django_markdown',
 
     # Apps
     'authenticating',
