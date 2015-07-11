@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
+from django.http import Http404
 from .models import Post
 
 
@@ -28,3 +29,15 @@ def post_detail(request, pk):
             }
         )
     )
+
+
+@login_required
+def add(request, slug):
+    response = {
+        'text': None,
+        'link': None,
+        'image': None
+    }.get(slug, None)
+
+    if not response:
+        raise Http404
